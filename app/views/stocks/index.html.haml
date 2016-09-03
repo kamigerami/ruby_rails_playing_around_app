@@ -9,12 +9,12 @@
     %th Price Paid
     %th +/-%
     %th P/E
-    %th Divident Yield
+    %th Dividend
     - @stock.each do |stocks|
-      - mystock = StockQuote::Stock.quote(stocks.title)
+      - mystock = StockQuote::Stock.quote(stocks.symbol)
       %tr
         %td= link_to mystock.name, stocks # Name
-        %td= link_to stocks.title, stocks # Symbol
+        %td= link_to stocks.symbol, stocks # Symbol
         %td= mystock.last_trade_price_only #Price Paid
         - if mystock.percent_change.include? "-"
           %td.red= mystock.percent_change # Percentage -

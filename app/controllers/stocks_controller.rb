@@ -49,7 +49,7 @@ class StocksController < ApplicationController
   end
 
   def stock_params
-    params.require(:stock).permit(:title, :description)
+    params.require(:stock).permit(:symbol, :eps, :dividend_yield, :yield, :discrate, :numyears)
   end
 
 end

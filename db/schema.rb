@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903080023) do
+ActiveRecord::Schema.define(version: 20160903181158) do
 
   create_table "stocks", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "symbol"
+    t.float    "eps"
+    t.float    "dividend_yield"
+    t.float    "yield"
+    t.integer  "discrate"
+    t.integer  "numyears"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
 end

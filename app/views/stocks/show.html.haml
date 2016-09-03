@@ -1,4 +1,10 @@
-- mystock = StockQuote::Stock.quote(@stock.title)
+- mystock = StockQuote::Stock.quote(@stock.symbol)
+/ Variables
+- name = mystock.name
+- price = mystock.last_trade_price_only
+- eps = mystock.earnings_share
+- pe = mystock.pe_ratio
+- dividend_yield = mystock.dividend_yield
 
 %br/
 .row
@@ -16,21 +22,21 @@
     %tbody
       %tr
         %th{:scope => "row"} Price Paid
-        %td= mystock.last_trade_price_only
+        %td= price
       %tr
-        %th{:scope => "row"}  Earnings per share
-        %td= mystock.earnings_share
+        %th{:scope => "row"}  Earnings/share
+        %td= eps
       %tr
-        %th{:scope => "row"} P/E
-        %td= mystock.pe_ratio
+        %th{:scope => "row"} Price/Earnings
+        %td= pe
       %tr
-        %th{:scope => "row"} Divident yield
-        %td= mystock.dividend_yield
+        %th{:scope => "row"} Dividend
+        %td= dividend_yield
       %tr
-        %th{:scope => "row"} yield
+        %th{:scope => "row"} Profit margin
         %td
       %tr
-        %th{:scope => "row"} eps_estimate_current_year
+        %th{:scope => "row"} Earnings/share
         %td= mystock.eps_estimate_current_year
 
 .col-xs-12.col-sm-6.col-md-6

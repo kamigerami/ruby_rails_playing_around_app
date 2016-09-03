@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  symbol: MyString
+  eps: 1.5
+  dividend_yield: 1.5
+  yield: 1.5
+  discrate: 1
+  numyears: 1
 
 two:
-  title: MyString
-  description: MyText
+  symbol: MyString
+  eps: 1.5
+  dividend_yield: 1.5
+  yield: 1.5
+  discrate: 1
+  numyears: 1
