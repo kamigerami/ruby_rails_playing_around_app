@@ -4,15 +4,21 @@
 
 %table.table.table-striped
   %tr
-    %th Stock
-    %th Bid
+    %th Name
+    %th Symbol
+    %th Price Paid
     %th +/-%
+    %th P/E
+    %th Divident Yield
     - @stock.each do |stocks|
       - mystock = StockQuote::Stock.quote(stocks.title)
       %tr
-        %td= link_to stocks.title, stocks
-        %td= mystock.bid
+        %td= link_to mystock.name, stocks # Name
+        %td= link_to stocks.title, stocks # Symbol
+        %td= mystock.last_trade_price_only #Price Paid
         - if mystock.percent_change.include? "-"
-          %td.red= mystock.percent_change
+          %td.red= mystock.percent_change # Percentage -
         - else
-          %td.green= mystock.percent_change
+          %td.green= mystock.percent_change # Percentage +
+        %td= mystock.pe_ratio # P/E Ratio
+        %td= mystock.dividend_yield # Divident yield
