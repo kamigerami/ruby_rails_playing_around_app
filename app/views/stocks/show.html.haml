@@ -1,0 +1,13 @@
+%h1= @stock.title
+%p= @stock.description
+
+%p aktiekurs
+%p  vinst/aktie
+%p p/e tal
+%p utdelning
+
+= link_to "Back", root_path, class: 'btn btn-default'
+%br/
+= link_to "Edit", edit_stock_path, class: 'btn btn-default'
+%br/
+= link_to "Delete", stock_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default'
