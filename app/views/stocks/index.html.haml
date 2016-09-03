@@ -1,5 +1,18 @@
 %h1 this is the placeholder for the stocks#index
 %br/
 
-/- @stock.each do |stocks|
-/ %h2= link_to stocks.title, stocks
+
+%table.table.table-striped
+  %tr
+    %th Stock
+    %th Bid
+    %th +/-%
+    - @stock.each do |stocks|
+      - mystock = StockQuote::Stock.quote(stocks.title)
+      %tr
+        %td= link_to stocks.title, stocks
+        %td= mystock.bid
+        - if mystock.percent_change.include? "-"
+          %td.red= mystock.percent_change
+        - else
+          %td.green= mystock.percent_change
