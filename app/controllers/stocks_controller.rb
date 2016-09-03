@@ -9,6 +9,10 @@ class StocksController < ApplicationController
 
   end
 
+  def navbar
+    @stock = Stock.all.order("created_at DESC")
+  end
+
   def new
     @stock = Stock.new
   end
