@@ -10,10 +10,10 @@
           %li = msg
   .panel_body
     = f.input :symbol, label: "Ticker Symbol", input_html: { class: 'form-control'}
-    = f.input :dividend_yield, input_html: { class: 'form-control'}
+    = f.input :dividend_yield, label: "Dividend yield", input_html: { class: 'form-control'}
     = f.input :eps, label: "Earning/share", input_html: { class: 'form-control'}
-    = f.input :yield, input_html: { class: 'form-control'}
-    = f.input :discrate, input_html: { class: 'form-control'}
-    = f.input :numyears, input_html: { class: 'form-control'}
+    = f.input :yield, label: "Yield %", input_html: { class: 'form-control'}
+    = f.input :discrate, label: "Discount rate %", input_html: { class: 'form-control'}
+    = f.input :numyears, label: "Number of years projected", input_html: { class: 'form-control'}
     %br/
     = f.button :submit, class: 'btn btn-primary'

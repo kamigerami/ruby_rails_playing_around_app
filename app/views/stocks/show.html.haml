@@ -6,96 +6,61 @@
 - pe = mystock.pe_ratio
 - dividend_yield = mystock.dividend_yield
 
-%br/
-
-.row
-.text-center.col-md-12.col-md-offset-4
-  %ul.nav.nav-pills
-    %li.active{:role => "presentation"}
-      %a{:href => "#"} Overview
-    %li{:role => "presentation"}
-      %a{:href => "#"} Gordon Growth Model
-    %li{:role => "presentation"}
-      %a{:href => "#"} Discounted Cash Flow
 .text-center.col-md-4.col-md-offset-4
   %h3= mystock.name
 .row
 .col-xs-12.col-sm-6.col-md-6
-  %table.table.table-striped
-    %caption= Time.now.year
-    %thead
-      %tr
-        %th Current
-        %th Value
-    %tbody
-      %tr
-        %th{:scope => "row"} Price Paid
-        %td= price
-      %tr
-        %th{:scope => "row"}  Earnings/share
-        %td= eps
-      %tr
-        %th{:scope => "row"} Price/Earnings
-        %td= pe
-      %tr
-        %th{:scope => "row"} Dividend
-        %td= dividend_yield
-      %tr
-        %th{:scope => "row"} Profit margin
-        %td
-      %tr
-        %th{:scope => "row"} Earnings/share
-        %td= mystock.eps_estimate_current_year
-
-// The below will be yielded depending on the model
-.col-xs-12.col-sm-6.col-md-6
-  %table.table.table-striped
-    %caption= Time.now.year+1
-    %thead
-      %tr
-        %th Estimates
-        %th Value
-    %tbody
-      %tr
-        %th{:scope => "row"} Price Paid
-        %td= price
-      %tr
-        %th{:scope => "row"}  Earnings/share
-        %td= eps
-      %tr
-        %th{:scope => "row"} Price/Earnings
-        %td= pe
-      %tr
-        %th{:scope => "row"} Dividend
-        %td= dividend_yield
-      %tr
-        %th{:scope => "row"} Profit margin
-        %td
-      %tr
-        %th{:scope => "row"} Earnings/share
-        %td= mystock.eps_estimate_current_year
-%br/
-.row
-.text-center.col-md-4.col-md-offset-4
-  %table.table.table-striped
-    %caption Recommendations:
-    %thead
-      %tr
-        %th Value
-        %th Discount
-    %tbody
-      %tr
-        %th{:scope => "row"} Estimated Price
-        %td= price
-      %tr
-        %th{:scope => "row"}  Rebate
-        %td= price
-
-// The above will be yielded from different pages
-.row
-.text-center.col-md-4.col-md-offset-4
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#2016"} Overview
+    .tab-content
+      #2016.tab-pane.active
+        %table.table.table-striped
+          %caption= Time.now.year
+          %thead
+            %tr
+              %th Current
+              %th Value
+          %tbody
+            %tr
+              %th{:scope => "row"} Price Paid
+              %td= price
+            %tr
+              %th{:scope => "row"}  Earnings/share
+              %td= eps
+            %tr
+              %th{:scope => "row"} Price/Earnings
+              %td= pe
+            %tr
+              %th{:scope => "row"} Dividend
+              %td= dividend_yield
+            %tr
+              %th{:scope => "row"} Profit margin
+              %td
+            %tr
+              %th{:scope => "row"} Earnings/share
+              %td= mystock.eps_estimate_current_year
   = link_to "Back", root_path, class: 'btn btn-default'
   = link_to "Edit", edit_stock_path, class: 'btn btn-default'
   = link_to "Delete", stock_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default'
-.row
-%br/
+// The below will be yielded depending on the model
+.col-xs-12.col-sm-6.col-md-6
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#tab1"} Overview
+      %li
+        %a{"data-toggle" => "tab", :href => "#tab2"}  Gordon Growth Model
+      %li
+        %a{"data-toggle" => "tab", :href => "#tab3"}  Discounted Cash Flow
+    .tab-content
+      #tab1.tab-pane.active
+        = render partial: "shared/overview"
+      #tab2.tab-pane
+        %p Howdy, I'm in Section 2.
+      #tab3.tab-pane
+        %p Section 3
+
+
+// The above will be yielded from different pages
