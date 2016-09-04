@@ -7,10 +7,18 @@
 - dividend_yield = mystock.dividend_yield
 
 %br/
+
 .row
+.text-center.col-md-12.col-md-offset-4
+  %ul.nav.nav-pills
+    %li.active{:role => "presentation"}
+      %a{:href => "#"} Overview
+    %li{:role => "presentation"}
+      %a{:href => "#"} Gordon Growth Model
+    %li{:role => "presentation"}
+      %a{:href => "#"} Discounted Cash Flow
 .text-center.col-md-4.col-md-offset-4
   %h3= mystock.name
-
 .row
 .col-xs-12.col-sm-6.col-md-6
   %table.table.table-striped
@@ -39,6 +47,7 @@
         %th{:scope => "row"} Earnings/share
         %td= mystock.eps_estimate_current_year
 
+// The below will be yielded depending on the model
 .col-xs-12.col-sm-6.col-md-6
   %table.table.table-striped
     %caption= Time.now.year+1
@@ -82,6 +91,7 @@
         %th{:scope => "row"}  Rebate
         %td= price
 
+// The above will be yielded from different pages
 .row
 .text-center.col-md-4.col-md-offset-4
   = link_to "Back", root_path, class: 'btn btn-default'

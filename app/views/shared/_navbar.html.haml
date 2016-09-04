@@ -11,10 +11,9 @@
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        %li.active
-          %a{:href => root_path}
-            Home
-            %span.sr-only (curent)
-        %li= link_to "Add Stock", new_stock_path
+        %li{class: current_page?(root_path) && 'active'}
+          = link_to "Home",root_path
+        %li{class: current_page?(new_stock_path) &&  'active'}
+          = link_to "Add Stock", new_stock_path
     / /.navbar-collapse
   / /.container-fluid
