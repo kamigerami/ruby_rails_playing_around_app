@@ -1,49 +1,42 @@
-- mystock = StockQuote::Stock.quote(@stock.symbol)
-/ Variables
-- name = mystock.name
-- price = mystock.last_trade_price_only
-- eps = mystock.earnings_share
-- pe = mystock.pe_ratio
-- dividend_yield = mystock.dividend_yield
-
-%table.table.table-striped
-  %caption= Time.now.year+1
-  %thead
-    %tr
-      %th Estimates
-      %th Value
-  %tbody
-    %tr
-      %th{:scope => "row"} Price Paid
-      %td= price
-    %tr
-      %th{:scope => "row"}  Earnings/share
-      %td= eps
-    %tr
-      %th{:scope => "row"} Price/Earnings
-      %td= pe
-    %tr
-      %th{:scope => "row"} Dividend
-      %td= dividend_yield
-    %tr
-      %th{:scope => "row"} Profit margin
-      %td
-    %tr
-      %th{:scope => "row"} Earnings/share
-      %td= mystock.eps_estimate_current_year
-%br/
-.row
-.text-center.col-md-12
+= present @stock do |stock_presenter|
   %table.table.table-striped
-    %caption Recommendations:
+    %caption= Time.now.year+1
     %thead
       %tr
+        %th Estimates
         %th Value
-        %th Discount
     %tbody
       %tr
-        %th{:scope => "row"} Estimated Price
-        %td= price
+        %th{:scope => "row"} Price Paid
+        %td= stock_presenter.last_trade_price_only
       %tr
-        %th{:scope => "row"}  Rebate
-        %td= price
+        %th{:scope => "row"}  Earnings/share
+        %td= stock_presenter.earnings_share
+      %tr
+        %th{:scope => "row"} Price/Earnings
+        %td= stock_presenter.pe_ratio
+      %tr
+        %th{:scope => "row"} Dividend
+        %td= stock_presenter.dividend_yield
+      %tr
+        %th{:scope => "row"} Profit margin
+        %td
+      %tr
+        %th{:scope => "row"} Earnings/share
+        %td= stock_presenter.eps_estimate_current_year
+  %br/
+  .row
+  .text-center.col-md-12
+    %table.table.table-striped
+      %caption Recommendations:
+      %thead
+        %tr
+          %th Value
+          %th Discount
+      %tbody
+        %tr
+          %th{:scope => "row"} Estimated Price
+          %td= (stock_presenter.last_trade_price_only*stock_presenter.eps_estimate_next_year)
+        %tr
+          %th{:scope => "row"}  Rebate
+          %td= stock_presenter.eps_estimate_next_year
