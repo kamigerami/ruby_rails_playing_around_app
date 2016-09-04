@@ -1,12 +1,6 @@
 class StocksController < ApplicationController
   before_action :find_stock, only: [:show, :edit, :update, :destroy ]
 
-  def payout_ratio
-   @stock = Stock.new(stock_params)
-   @mystock = StockQuote::Stock.quote(@stock.symbol)
-   @eps = @mystock.dividend_yield / @mystock.earnings_share
-  end
-
   def index
     @stock = Stock.all.order("created_at DESC")
   end
