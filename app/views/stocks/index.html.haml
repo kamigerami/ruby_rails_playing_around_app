@@ -1,23 +1,43 @@
 %br/
 
+%p # avkastning på kapital (ROE return on equity)
+%p # = dividend_yield or share / dividend payout Ratio (net income payed out as dividends)
+%p # http://finance.yahoo.com/q/ks?s=AAPL
+
+%p # högst direktavkastning
 
 %table.table.table-striped
   %tr
     %th Name
     %th Symbol
-    %th Price Paid
+    %th Last trade price
+    %th Your buy price
+    %th win/loss
     %th +/-%
+    %th Target Exit price
+    %th
     %th P/E
-    %th Dividend
+    %th earnings / share
+
+
     - @stock.each do |stocks|
-      - mystock = StockQuote::Stock.quote(stocks.symbol)
+      - quote = StockQuote::Stock.quote(stocks.symbol)
       %tr
-        %td= link_to mystock.name, stocks # Name
-        %td= link_to stocks.symbol, stocks # Symbol
-        %td= mystock.last_trade_price_only #Price Paid
-        - if mystock.percent_change.include? "-"
-          %td.red= mystock.percent_change # Percentage -
+        %td= link_to quote.name, stocks # Name
+        %td= link_to quote.symbol, stocks # Symbol
+        %td= quote.last_trade_price_only #Last trade price
+        %td= stocks[:buyprice] #Your buy price
+        - percent_change = number_to_percentage((quote.last_trade_price_only/stocks[:buyprice]-1)*100)
+        - if percent_change.include? '-'
+          %td.red= number_with_precision(quote.last_trade_price_only-stocks[:buyprice], precision: 2) # Win/Loss
+          %td.red= number_with_precision(percent_change.to_f, precision: 1)+'%' # Percentage -
         - else
-          %td.green= mystock.percent_change # Percentage +
-        %td= mystock.pe_ratio # P/E Ratio
-        %td= mystock.dividend_yield # Divident yield
+          %td.green= number_with_precision(quote.last_trade_price_only-stocks[:buyprice], precision: 2) # Win/Loss
+          %td.green= number_with_precision(percent_change.to_f, precision: 1)+'%' # Percentage +
+        %td= quote.oneyr_target_price #Target exit price
+        %td
+        %td= quote.pe_ratio # P/E Ratio   last_trade_price_only / earnings_share
+        %td= quote.earnings_share #earnings share
+
+
+%br

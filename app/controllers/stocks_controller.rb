@@ -21,7 +21,7 @@ class StocksController < ApplicationController
     @stock = Stock.new(stock_params)
 
     if @stock.save
-      redirect_to @stock, notice: "Successfully created new Stock"
+      redirect_to root_path, notice: "Successfully created new Stock"
     else
       render 'new'
     end
@@ -49,7 +49,7 @@ class StocksController < ApplicationController
   end
 
   def stock_params
-    params.require(:stock).permit(:symbol, :eps, :dividend_yield, :yield, :discrate, :numyears)
+    params.require(:stock).permit(:symbol, :eps, :dividend_yield, :yield, :discrate, :buyprice)
   end
 
 end

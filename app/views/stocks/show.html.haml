@@ -1,60 +1,60 @@
-= present @stock do |stock_presenter|
-  .text-center.col-md-4.col-md-offset-4
-    %h3= stock_presenter.name
-  .row
-  .col-xs-12.col-sm-6.col-md-6
-    .tabbable
-      %ul.nav.nav-tabs
-        %li.active
-          %a{"data-toggle" => "tab", :href => "#2016"} Overview
-      .tab-content
-        #2016.tab-pane.active
-          %table.table.table-striped
-            %caption= Time.now.year
-            %thead
-              %tr
-                %th Current
-                %th Value
-            %tbody
-              %tr
-                %th{:scope => "row"} Price Paid
-                %td= stock_presenter.last_trade_price_only
-              %tr
-                %th{:scope => "row"}  Earnings/share
-                %td= stock_presenter.eps_estimate_current_year
-              %tr
-                %th{:scope => "row"} Price/Earnings
-                %td= stock_presenter.pe_ratio
-              %tr
-                %th{:scope => "row"} Dividend
-                %td= stock_presenter.dividend_yield
-              %tr
-                %th{:scope => "row"} Profit margin
-                %td= stock_presenter.earnings_share
-              %tr
-                %th{:scope => "row"} Earnings/share
-                %td= stock_presenter.eps_estimate_current_year
-    = link_to "Back", root_path, class: 'btn btn-default'
-    = link_to "Edit", edit_stock_path, class: 'btn btn-default'
-    = link_to "Delete", stock_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default'
-
-// The below will be yielded depending on the model
+- quote = StockQuote::Stock.quote(@stock.symbol)
+.text-center.col-md-4.col-md-offset-4
+  %h3= quote.name
+.row
 .col-xs-12.col-sm-6.col-md-6
   .tabbable
     %ul.nav.nav-tabs
       %li.active
-        %a{"data-toggle" => "tab", :href => "#tab1"} Overview
-      %li
-        %a{"data-toggle" => "tab", :href => "#tab2"}  Gordon Growth Model
-      %li
-        %a{"data-toggle" => "tab", :href => "#tab3"}  Discounted Cash Flow
+        %a{"data-toggle" => "tab", :href => "#2016"} Overview
     .tab-content
-      #tab1.tab-pane.active
-        = render partial: "shared/overview"
-      #tab2.tab-pane
-        = render partial: "shared/ggm"
-      #tab3.tab-pane
-        = render partial: "shared/dcf"
+      #2016.tab-pane.active
+        %table.table.table-striped
+          %caption= Time.now.year
+          %thead
+            %tr
+              %th Current
+              %th Value
+          %tbody
+            %tr
+              %th{:scope => "row"} Price Paid
+              %td= @stock[:buyprice]
+            %tr
+              %th{:scope => "row"}  Earnings/share
+              %td eps_estimate_current_year
+            %tr
+              %th{:scope => "row"} Price/Earnings
+              %td pe_ratio
+            %tr
+              %th{:scope => "row"} Dividend
+              %td dividend_yield
+            %tr
+              %th{:scope => "row"} Profit margin
+              %td earnings_share
+            %tr
+              %th{:scope => "row"} Earnings/share
+              %td eps_estimate_current_year
+  = link_to "Back", root_path, class: 'btn btn-default'
+  = link_to "Edit", edit_stock_path, class: 'btn btn-default'
+  = link_to "Delete", stock_path, method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default'
+
+// The below will be yielded depending on the model
+.col-xs-12.col-sm-6.col-md-6
+.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      %a{"data-toggle" => "tab", :href => "#tab1"} Overview
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab2"}  Gordon Growth Model
+    %li
+      %a{"data-toggle" => "tab", :href => "#tab3"}  Discounted Cash Flow
+  .tab-content
+    #tab1.tab-pane.active
+      = render partial: "shared/overview"
+    #tab2.tab-pane
+      = render partial: "shared/ggm"
+    #tab3.tab-pane
+      = render partial: "shared/dcf"
 
 
 // The above will be yielded from different pages

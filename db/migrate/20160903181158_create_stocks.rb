@@ -6,7 +6,7 @@ class CreateStocks < ActiveRecord::Migration
       t.float :dividend_yield
       t.float :yield
       t.integer :discrate
-      t.integer :numyears
+      t.float :buyprice
 
       t.timestamps null: false
     end
