@@ -1,0 +1,39 @@
+default: &default 
+  adapter: postgresql 
+  encoding: unicode 
+  pool: 5 
+  timeout: 5000 
+  username: postgres 
+  host: postgres
+  port: 5432
+
+development:
+  adapter: postgresql
+  database: db/development
+  pool: 5
+  timeout: 5000
+  username: postgres 
+  host: postgres
+  port: 5432
+
+
+test:
+  adapter: postgresql
+  database: db/test
+  pool: 5
+  timeout: 5000
+  username: postgres 
+  host: postgres
+  port: 5432
+
+
+production:
+  adapter: postgresql
+  database: db/production
+  pool: 5
+  timeout: 5000
+  username: postgres 
+  host: postgres
+  port: 5432
+
+
